@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs-test
+  labels:
+    app: rs-test
+spec:
+  # modifica las réplicas según tu caso de uso
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pod-label
+  template:
+    metadata:
+      name: podtest2-yaml
+      labels:
+        app: pod-label
+    spec:
+      containers:
+        - name: web
+          image: nginx
+          ports:
+            - name: web
+              containerPort: 80
+              protocol: TCP
